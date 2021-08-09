@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:state_project/home_page_getx.dart';
+import 'package:state_project/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePageGetX(),
+      initialRoute: "/home",
+      routes: {
+        "/home": (context)=>HomePage(),
+        "/getx": (context)=>HomePageGetX()
+      },
     );
   }
 }
