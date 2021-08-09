@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:state_project/controllers/controller_provider.dart';
 import 'package:state_project/home_page_getx.dart';
+import 'package:state_project/home_page_provider.dart';
 import 'package:state_project/homepage.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,13 +16,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       initialRoute: "/home",
       routes: {
         "/home": (context)=>HomePage(),
-        "/getx": (context)=>HomePageGetX()
+        "/getx": (context)=>HomePageGetX(),
+        "/provider": (context)=> ChangeNotifierProvider(
+          create: (_)=>HomePageProviderController(),
+          child: HomePageProvider(),),
       },
     );
   }

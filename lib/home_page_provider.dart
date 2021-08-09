@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:state_project/controllers/controller_getx.dart';
+import 'package:provider/provider.dart';
+import 'package:state_project/controllers/controller_provider.dart';
 
-class HomePageGetX extends StatefulWidget {
-
-  const HomePageGetX({ Key? key }) : super(key: key);
+class HomePageProvider extends StatefulWidget {
+  const HomePageProvider({ Key? key }) : super(key: key);
 
   @override
-  State<HomePageGetX> createState() => _HomePageGetXState();
+  _HomePageProviderState createState() => _HomePageProviderState();
 }
 
-class _HomePageGetXState extends State<HomePageGetX> {
-  final HomePageGetXController homePageGetXController = Get.put(HomePageGetXController());
-
+class _HomePageProviderState extends State<HomePageProvider> {
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomePageGetXController>(builder: (_){
-      return Scaffold(
+    final controllerProvider = Provider.of<HomePageProviderController>(context);
+
+    return Scaffold(
       appBar: AppBar(
-        title: Text("Implementação GetX ${homePageGetXController.number}"),
+        title: Text("Implementação Provider ${controllerProvider.number}"),
         leading: GestureDetector(
           onTap: (){
             Navigator.popAndPushNamed(context, "/home");
@@ -40,12 +38,12 @@ class _HomePageGetXState extends State<HomePageGetX> {
               ),
               child: TextButton(
                 onPressed: (){
-                  homePageGetXController.changeToOne();
+                  controllerProvider.changeToOne();
                 }, 
                 child: Text("Botão 1", style: TextStyle(color: Colors.white),)),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
+              margin: EdgeInsets.symmetric(vertical: 20),
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
               decoration: BoxDecoration(
                 color: Colors.blue,
@@ -53,7 +51,7 @@ class _HomePageGetXState extends State<HomePageGetX> {
               ),
               child: TextButton(
                 onPressed: (){
-                  homePageGetXController.changeToTwo();
+                  controllerProvider.changeToTwo();
                 }, 
                 child: Text("Botão 2", style: TextStyle(color: Colors.white),)),
             ),
@@ -65,14 +63,14 @@ class _HomePageGetXState extends State<HomePageGetX> {
               ),
               child: TextButton(
                 onPressed: (){
-                  homePageGetXController.changeToThree();
+                  controllerProvider.changeToThree();
                 }, 
                 child: Text("Botão 3", style: TextStyle(color: Colors.white),)),
-            )
+            ),
+            
           ],
         ),
       ),
     );
-    });
   }
 }

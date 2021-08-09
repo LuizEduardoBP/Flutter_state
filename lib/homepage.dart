@@ -7,7 +7,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("HomePage"),),
+        title: Text("HomePage"),
+),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -27,6 +28,31 @@ class HomePage extends StatelessWidget {
                 }, 
                 child: Text("Implementação getX", style: TextStyle(color: Colors.white),)),
             ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(20)
+              ),
+              child: TextButton(
+                onPressed: (){
+                 Navigator.pushReplacementNamed(context, "/provider");
+                }, 
+                child: Text("Implementação Provider", style: TextStyle(color: Colors.white),)),
+            ),
+            // Container(
+            //   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+            //   decoration: BoxDecoration(
+            //     color: Colors.blue,
+            //     borderRadius: BorderRadius.circular(20)
+            //   ),
+            //   child: TextButton(
+            //     onPressed: (){
+                 
+            //     }, 
+            //     child: Text("Implementação", style: TextStyle(color: Colors.white),)),
+            // ),
           ],)));
   }
 }
