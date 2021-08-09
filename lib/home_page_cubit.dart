@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
+import 'package:state_project/controllers/controller_cubit.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({ Key? key }) : super(key: key);
+class HomePageCubit extends StatefulWidget {
+  const HomePageCubit({ Key? key }) : super(key: key);
 
   @override
+  _HomePageCubitState createState() => _HomePageCubitState();
+}
+
+class _HomePageCubitState extends State<HomePageCubit> {
+  @override
   Widget build(BuildContext context) {
+    final cubitValue = context.select((CubitValue cubit) => cubit.state);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("HomePage"),
-),
+        title: Text("Implementação Cubit $cubitValue"),
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.popAndPushNamed(context, "/home");
+          },
+          child: Icon(Icons.close)),
+        ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -24,9 +38,9 @@ class HomePage extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: (){
-                  Navigator.pushReplacementNamed(context, "/getx");
+                  context.read<CubitValue>().changeToOne();
                 }, 
-                child: Text("Implementação getX", style: TextStyle(color: Colors.white),)),
+                child: Text("Botão 1", style: TextStyle(color: Colors.white),)),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 20),
@@ -37,9 +51,9 @@ class HomePage extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: (){
-                 Navigator.pushReplacementNamed(context, "/provider");
+                  context.read<CubitValue>().changeToTwo();
                 }, 
-                child: Text("Implementação Provider", style: TextStyle(color: Colors.white),)),
+                child: Text("Botão 2", style: TextStyle(color: Colors.white),)),
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
@@ -49,10 +63,14 @@ class HomePage extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: (){
-                 Navigator.pushReplacementNamed(context, "/cubit");
+                  context.read<CubitValue>().changeToThree();
                 }, 
-                child: Text("Implementação Cubit", style: TextStyle(color: Colors.white),)),
+                child: Text("Botão 3", style: TextStyle(color: Colors.white),)),
             ),
-          ],)));
+            
+          ],
+        ),
+      ),
+    );
   }
 }

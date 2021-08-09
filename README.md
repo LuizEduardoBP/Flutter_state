@@ -2,4 +2,5 @@
 
 ## GetX finalizado
 ## Provider finalizado
+## Cubit finalizado
 ## Bloc
